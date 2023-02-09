@@ -1,8 +1,7 @@
 //File to create a simple logging function to be used elsewhere as desired.
 
-//import writeFileSync as fs from 'fs';
-import * as fs from 'fs';
+import {writeFileSync} from 'fs';
 
-export const log = (str: string) => {
-	fs.writeFileSync("../logs.txt", str)
+export function log(msg: string) {
+	writeFileSync("logs.txt", msg + "\n", {flag: "a+"});//a+ is append mode
 }
