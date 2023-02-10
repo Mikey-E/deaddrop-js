@@ -16,6 +16,8 @@ export const sendMessage = async (user: string) => {
             await saveMessage(message, user);
         });
 
+		log("Message sent to \"" + user + "\"");
+
     } catch (error) {
 		//When !await userExists(user) fails.
 		//Ideally I'd try-catch the above if-block specifically but I'm not changing deaddrop's core functionality.
