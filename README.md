@@ -33,6 +33,7 @@ Events to trigger a log statement:
 Other Notes:
 - timestamps on log statements seem like a good idea but it was not asked for at this time so it shall not be implemented
 at this time.
+- assuming that for privacy, no message content should be in logs.
 
 ## Mitigation
 
