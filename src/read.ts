@@ -9,6 +9,7 @@ export async function readMessages(user: string) {
         }
 
         if (!await authenticate(user)) {
+			log("Unable to authenticate \"" + user + "\", most likely wrong password.");
             throw new Error("Unable to authenticate");
         }
 
