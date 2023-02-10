@@ -24,7 +24,8 @@ Data gets stored into the local database file dd.db. This file will not by synch
 ## Logging Strategy
 
 Events to trigger a log statement:
-- sending and reading a message to a user that exists
+- sending a message to a user that exists
+- reading messages from a user that exists
 - creating a new user
 - reading messages with the wrong password
 - reading the messages for a user which doesn’t exist
