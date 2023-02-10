@@ -1,6 +1,7 @@
 import readline from "readline";
 import { saveMessage, userExists } from "./db";
 import { log } from "./logging";
+import { sub_encrypt } from "./cipher";
 
 export const sendMessage = async (user: string) => {
     try {
@@ -28,7 +29,7 @@ export const sendMessage = async (user: string) => {
         }
 
         getUserMessage().then(async (message) => {
-            await saveMessage(message, user);
+            await saveMessage(sub_encrypt(message), user);
         });
 
 		log("Message sent to \"" + user + "\"");
