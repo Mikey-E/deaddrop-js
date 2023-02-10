@@ -1,7 +1,7 @@
 import { getMessagesForUser, userExists } from "./db";
 import { authenticate } from "./session";
 import { log } from "./logging";
-import { sub_decrypt } from "./cipher";
+import { pad_decrypt } from "./cipher";
 
 export async function readMessages(user: string) {
     try {

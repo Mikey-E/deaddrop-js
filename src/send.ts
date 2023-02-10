@@ -1,7 +1,7 @@
 import readline from "readline";
 import { saveMessage, userExists } from "./db";
 import { log } from "./logging";
-import { sub_encrypt } from "./cipher";
+import { pad_encrypt } from "./cipher";
 
 export const sendMessage = async (user: string) => {
     try {
