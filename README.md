@@ -40,13 +40,12 @@ at this time.
 
 In the previous assignment submission (for Security Analysis), under section 4: "One way in which the system could
 be improved" it was
-mentioned how the database dd.db can be opened up by anyone and searched through to find the messages sitting in inside it in
+mentioned how the database dd.db can be opened up by anyone and searched through to find the messages sitting inside it in
 plaintext. The proposed solution was to encrypt those messages into ciphertext as well. In this homework, that solution will
-be implemented with a substitution cipher[1]. This cipher will consider the printable ascii characters in the range
-{20, 21, ... , 127} and replace them with their following neighbor, with 127 wrapping around to 20. Decryption undoes this by
-substituting in the reverse order. While substituion ciphers are not the most secure ciphers, this change will serve as a
-proof-of-concept of having the messages live in the database as ciphertext.
+be implemented with a cipher based on padding random characters[1]. While such a cipher is not the most secure cipher,
+this change will serve as a proof-of-concept of having the messages live in the database as ciphertext.
 
 ## References
 
-[1] Substitution cipher (2023, Feb 9). Wikipedia. https://en.wikipedia.org/wiki/Substitution_cipher
+[1] Generate random string/characters in JavaScript (2023, Feb 9). Stack Overflow.
+https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
