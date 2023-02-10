@@ -41,9 +41,15 @@ at this time.
 In the previous assignment submission (for Security Analysis), under section 4: "One way in which the system could
 be improved" it was
 mentioned how the database dd.db can be opened up by anyone and searched through to find the messages sitting inside it in
-plaintext. The proposed solution was to encrypt those messages into ciphertext as well. In this homework, that solution will
+plaintext. The proposed solution was to encrypt those messages into ciphertext as well.
+
+In this homework, that solution will
 be implemented with a cipher based on padding random characters[1]. While such a cipher is not the most secure cipher,
 this change will serve as a proof-of-concept of having the messages live in the database as ciphertext.
+
+cipher.ts contains 2 functions: one to encrypt a string by padding random characters inbetween the plaintext characters
+with a default amount of 1 character(s),
+and one function to undo (decrypt) that.
 
 ## References
 
