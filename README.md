@@ -23,6 +23,7 @@ Data gets stored into the local database file dd.db. This file will not by synch
 
 ## Logging Strategy
 
+Events to trigger a log statement:
 - sending and reading a message to a user that exists
 - creating a new user
 - reading messages with the wrong password
@@ -30,9 +31,14 @@ Data gets stored into the local database file dd.db. This file will not by synch
 - sending messages to a user which doesn’t exist
 - other tasks that would be appropriate !???????????????????????????????????????????????
 
+Other Notes:
+- timestamps on log statements seem like a good a idea but it was not asked for at this time so it shall not be implemented
+at this time.
+
 ## Mitigation
 
-In the previous assignment, Security Analysis, under section 4: "One way in which the system could be improved" it was
+In the previous assignment submission (for Security Analysis), under section 4: "One way in which the system could
+be improved" it was
 mentioned how the database dd.db can be opened up by anyone and searched through to find the messages sitting in inside it in
 plaintext. The proposed solution was to encrypt those messages into ciphertext as well. In this homework, that solution will
 be implemented with a substitution cipher[1]. This cipher will consider the printable ascii characters in the range
