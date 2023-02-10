@@ -33,7 +33,7 @@ export async function readMessages(user: string) {
 
     } catch (error) {
 
-		/*old solution
+		/*Old solution.
 		//Same spiel as in send.ts
 		log("Read-message error to \"" + user + "\" most likely because \"" + user + "\" doesn't exist");
 		*/
