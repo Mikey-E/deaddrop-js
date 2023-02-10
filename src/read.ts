@@ -1,6 +1,7 @@
 import { getMessagesForUser, userExists } from "./db";
 import { authenticate } from "./session";
 import { log } from "./logging";
+import { sub_decrypt } from "./cipher";
 
 export async function readMessages(user: string) {
     try {
@@ -26,7 +27,7 @@ export async function readMessages(user: string) {
         }
 
         getMessagesForUser(user).then((messages) => {
-            messages.forEach((e: string) => console.log(e, "\n"));
+            messages.forEach((e: string) => console.log(sub_decrypt(e), "\n"));
         });
 
 		log("Messages read by \"" + user + "\"");
