@@ -1,0 +1,7 @@
+Created user "mike1"
+Created user "mike2"
+Message sent to "mike2"
+Messages read by "mike2"
+Unable to authenticate "mike2", most likely wrong password.
+Tried to read messages from "mike12345" but that user doesn't exist
+Tried to send message to "Mike1234" but that user doesn't exist
