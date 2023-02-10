@@ -2,6 +2,7 @@ import readline from "readline";
 
 import { noUsers, setUserPassHash, userExists } from "./db";
 import { authenticate, getPassword } from "./session";
+import { log } from "./logging";
 
 export const newUser = async (user: string) => {
     try {
@@ -17,6 +18,8 @@ export const newUser = async (user: string) => {
         let newPassHash = await getPassword();
 
         await setUserPassHash(newUser, newPassHash);
+
+		log("Created user \"" + newUser + "\"");
 
     } catch (error) {
         console.error("Error ocurred creating a new user.", error);
