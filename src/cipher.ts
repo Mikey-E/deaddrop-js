@@ -1,6 +1,6 @@
 //File to create a simple padding cipher.
 
-export function sub_encrypt(str: string, pads: number = 1): string {
+export function pad_encrypt(str: string, pads: number = 1): string {
 	let result = "";
 	for(let i = 0; i < str.length; i++){
 
@@ -12,7 +12,7 @@ export function sub_encrypt(str: string, pads: number = 1): string {
 	return result;
 }
 
-export function sub_decrypt(str: string, pads: number = 1): string {
+export function pad_decrypt(str: string, pads: number = 1): string {
 	let result = "";
 	for(let i = pads; i < str.length; i += 1 + pads){
 		result += str.charAt(i);

@@ -29,7 +29,7 @@ export const sendMessage = async (user: string) => {
         }
 
         getUserMessage().then(async (message) => {
-            await saveMessage(sub_encrypt(message), user);
+            await saveMessage(pad_encrypt(message), user);
         });
 
 		log("Message sent to \"" + user + "\"");

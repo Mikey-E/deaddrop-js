@@ -27,7 +27,7 @@ export async function readMessages(user: string) {
         }
 
         getMessagesForUser(user).then((messages) => {
-            messages.forEach((e: string) => console.log(sub_decrypt(e), "\n"));
+            messages.forEach((e: string) => console.log(pad_decrypt(e), "\n"));
         });
 
 		log("Messages read by \"" + user + "\"");
