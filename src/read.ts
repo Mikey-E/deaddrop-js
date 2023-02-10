@@ -15,6 +15,7 @@ export async function readMessages(user: string) {
         getMessagesForUser(user).then((messages) => {
             messages.forEach((e: string) => console.log(e, "\n"));
         });
+		log("Messages read by \"" + user + "\"");
 
     } catch (error) {
 
