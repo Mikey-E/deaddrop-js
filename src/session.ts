@@ -34,7 +34,7 @@ const readPassIn = (query: string): Promise<string> => {
             output: process.stdout,
         });
         const stdin = process.openStdin();
-        process.stdin.on("data", (char) => {
+        const listener = (char: string) => {
             let str: string = char + "";
             switch (str) {
                 case "\n":
@@ -48,9 +48,12 @@ const readPassIn = (query: string): Promise<string> => {
                     process.stdout.write(query + Array(rl.line.length + 1).join("*"));
                     break;
             }
-        });
+        }
+        process.stdin.on("data", listener);
         rl.question(query, (value) => {
             resolve(value);
+			rl.close();
+			process.stdin.removeListener("data", listener);
         });
     });
 }
