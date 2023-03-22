@@ -58,6 +58,9 @@ password upon the --send command. From there, it is easy to kill two stones with
 of the message itself; this automatically displays the sender of the message whenever it is retrieved, and also protects the
 identity of the sender from tampering because it is part of the message string itself.
 
+In the interest of not changing the Deaddrop_User_Guide.pdf, no new cmdline flags will be added to the send command. The
+sender will be prompted for their username and password at runtime.
+
 ### Justification for MAC changes as correct
 
 ## References
