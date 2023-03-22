@@ -53,6 +53,16 @@ and one function to undo (decrypt) that.
 
 ## MAC Strategy
 
+### First some important notes about other changes
+
+readPassIn was previously adding an anonymous listener that was never removed. This caused all further prompts after
+Password: \*\*\*\*\*\*\* to also be written as Password: \*\*\*\*\*\*\*\*. The rl was never closed (likewise in some other
+functions), which would cause multiple characters to be printed out e.g. when typing "a" stdout would show "aa" or "aaa"
+upon that single keypress. These have been fixed by naming a reference to the anonymous listener and then removing it after
+resolving the user input, as well as closing the rl in readPassIn and other functions.
+
+### The schema
+
 A straightforward schema for requiring a user to authenticate before sending a message is to prompt for the username and
 password upon the --send command. From there, it is easy to kill two stones with one bird by prepending the sender as part
 of the message itself; this automatically displays the sender of the message whenever it is retrieved, and also protects the
