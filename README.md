@@ -51,6 +51,15 @@ cipher.ts contains 2 functions: one to encrypt a string by padding random charac
 with a default amount of 1 character(s),
 and one function to undo (decrypt) that.
 
+## MAC Strategy
+
+A straightforward schema for requiring a user to authenticate before sending a message is to prompt for the username and
+password upon the --send command. From there, it is easy to kill two stones with one bird by prepending the sender as part
+of the message itself; this automatically displays the sender of the message whenever it is retrieved, and also protects the
+identity of the sender from tampering because it is part of the message string itself.
+
+### Justification for MAC changes as correct
+
 ## References
 
 [1] Generate random string/characters in JavaScript (2023, Feb 9). Stack Overflow.
