@@ -3,6 +3,9 @@ import { saveMessage, userExists } from "./db";
 import { log } from "./logging";
 import { pad_encrypt } from "./cipher";
 
+//MAC changes
+import { authenticate } from "./session";
+
 export const sendMessage = async (user: string) => {
     try {
 
@@ -28,8 +31,20 @@ export const sendMessage = async (user: string) => {
             throw new Error("Destination user does not exist");
         }
 
+		//MAC changes
+		//First check sender exists and is authenticated.
+		let sendername = await getSenderUsername()
+        if (!await userExists(sendername)) {
+			log("Tried to send message from \"" + sendername + "\" but that user doesn't exist");
+            throw new Error("User does not exist");
+        }
+        if (!(await authenticate(sendername))) {
+            throw new Error("Unable to authenticate " + sendername);
+        }
+
         getUserMessage().then(async (message) => {
-            await saveMessage(pad_encrypt(message), user);
+			//MAC changes prepend sender
+            await saveMessage(pad_encrypt("Sender: " + sendername + ", " + message), user);
         });
 
 		log("Message sent to \"" + user + "\"");
@@ -52,4 +67,12 @@ const getUserMessage = async (): Promise<string> => {
     let message: string = await new Promise(resolve => rl.question("Enter your message: ", resolve));
     rl.close();
     return message;
+}
+
+//MAC changes
+const getSenderUsername = async (): Promise<string> => {
+    let rl = readline.createInterface(process.stdin, process.stdout);
+    let username: string = await new Promise(resolve => rl.question("Sender Username: ", resolve));
+	rl.close();
+    return username;
 }
