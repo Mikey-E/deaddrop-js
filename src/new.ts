@@ -29,5 +29,6 @@ export const newUser = async (user: string) => {
 const getNewUsername = async (): Promise<string> => {
     let rl = readline.createInterface(process.stdin, process.stdout);
     let username: string = await new Promise(resolve => rl.question("Username: ", resolve));
+	rl.close();
     return username;
 }
