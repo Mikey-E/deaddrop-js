@@ -72,9 +72,12 @@ itself is a concatenation of the sender's name and the receiver's name.
 ### The schema
 
 A straightforward schema for requiring a user to authenticate before sending a message is to prompt for the username and
-password upon the --send command. From there, it is easy to kill two stones with one bird by prepending the sender as part
-of the message itself; this automatically displays the sender of the message whenever it is retrieved, and also protects the
-identity of the sender from tampering because it is part of the message string itself.
+password upon the --send command. From there, the sender's name is prepended as part
+of the message itself; this allows the sender of the message to easily<sup>TM</sup> be displayed whenever it is retrieved,
+and also it is
+protected from tampering because it has been used as an indirect input to the hash.
+
+The new message format in the database is a string of the hmac, sender's name, and message. All comma delimited.
 
 In the interest of not changing the Deaddrop_User_Guide.pdf, no new cmdline flags will be added to the send command. The
 sender will be prompted for their username and password at runtime.
@@ -89,7 +92,7 @@ database by the SQL in saveMessage, and the sender is part of the message. Prote
 in the database requires cryptography. By serendipity, the change I implemented in the logging assignment was just that;
 cipher.ts with pad_encrypt and pad_decrypt. We will assume this cryptography is secure despite that in the logging
 assignment it was meant for proof-of-concept. It protects the identity of the sender of all messages in the database, and
-therefore the attacker now cannot reproduce the key; cannot reproduce the HMAC.
+therefore the attacker now cannot reproduce the key; cannot reproduce the correct HMAC.
 
 Having a single key stored by deaddrop in either sourcecode or the database itself would introduce a single point of failure.
 With the key being different in every permutation of sender and user, it is more secure.
@@ -106,4 +109,5 @@ a hash[2, p323].
 
 [1] Generate random string/characters in JavaScript (2023, Feb 9). Stack Overflow.
 https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+
 [2] Christoff Paar and Jan Pelzl. Understanding Cryptography. Springer. 2010.
