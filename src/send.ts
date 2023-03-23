@@ -51,7 +51,7 @@ export const sendMessage = async (user: string) => {
 			let hmac: string = crypto.createHash('sha256').update(message + key).digest("hex");
 
 			//MAC changes - prepend sender, postpend key.
-            await saveMessage(pad_encrypt("HMAC:" + hmac + ", Sender:" + sendername + ", " + message), user);
+            await saveMessage(pad_encrypt(hmac + "," + sendername + "," + message), user);
         });
 
 		log("Message sent to \"" + user + "\"");
