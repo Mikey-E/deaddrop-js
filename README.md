@@ -92,7 +92,7 @@ database by the SQL in saveMessage, and the sender is part of the message. Prote
 in the database requires cryptography. By serendipity, the change I implemented in the logging assignment was just that;
 cipher.ts with pad_encrypt and pad_decrypt. We will assume this cryptography is secure despite that in the logging
 assignment it was meant for proof-of-concept. It protects the identity of the sender of all messages in the database, and
-therefore the attacker now cannot reproduce the key; cannot reproduce the correct HMAC.
+therefore the attacker now cannot reproduce the key; cannot produce the correct HMAC for any given changes.
 
 Having a single key stored by deaddrop in either sourcecode or the database itself would introduce a single point of failure.
 With the key being different in every permutation of sender and user, it is more secure.
