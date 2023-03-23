@@ -56,10 +56,18 @@ and one function to undo (decrypt) that.
 ### First some important notes about other changes
 
 readPassIn was previously adding an anonymous listener that was never removed. This caused all further prompts after
-Password: \*\*\*\*\*\*\* to also be written as Password: \*\*\*\*\*\*\*\*. The rl was never closed (likewise in some other
+Password: \*\*\*\*\*\*\* to also be written as Password: \*\*\*\*\*\*\*. The rl was never closed (likewise in some other
 functions), which would cause multiple characters to be printed out e.g. when typing "a" stdout would show "aa" or "aaa"
 upon that single keypress. These have been fixed by naming a reference to the anonymous listener and then removing it after
 resolving the user input, as well as closing the rl in readPassIn and other functions.
+
+Timestamps are now implemented.
+
+### The MAC
+
+The MAC implemented is a hash-based MAC (HMAC). This is done by secret suffix[2, p322] (as opposed to secret prefix) i.e. the
+secret key is concatenated on to the end of the message before hashing that concatenation to produce the HMAC. The secret key
+itself is a concatenation of the sender's name and the receiver's name.
 
 ### The schema
 
@@ -73,7 +81,29 @@ sender will be prompted for their username and password at runtime.
 
 ### Justification for MAC changes as correct
 
+The function to create a HMAC requires a key and a message.
+That key must not be reproducible by an attacker, because the attacker could then create an HMAC to match their changes.
+Given how the key is made with the sender and receiver name,
+at least one of either the sender or receiver must remain unknown to an attacker. The recipient is stored in the
+database by the SQL in saveMessage, and the sender is part of the message. Protecting them
+in the database requires cryptography. By serendipity, the change I implemented in the logging assignment was just that;
+cipher.ts with pad_encrypt and pad_decrypt. We will assume this cryptography is secure despite that in the logging
+assignment it was meant for proof-of-concept. It protects the identity of the sender of all messages in the database, and
+therefore the attacker now cannot reproduce the key; cannot reproduce the HMAC.
+
+Having a single key stored by deaddrop in either sourcecode or the database itself would introduce a single point of failure.
+With the key being different in every permutation of sender and user, it is more secure.
+It is true that with N users an attacker could guess the key with probability 1/(N-1), though we'll assume this is a
+tolerable risk, especially since it decreases as deaddrop's userbase scales.
+
+Secret suffix was chosen over secret prefix because that requires an attacker to be able to find a collision to exploit.
+This is a
+much taller order to exploit than the weakness in secret prefix, which allows an attacker to tack on new blocks and recompute
+a hash[2, p323].
+
+
 ## References
 
 [1] Generate random string/characters in JavaScript (2023, Feb 9). Stack Overflow.
 https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+[2] Christoff Paar and Jan Pelzl. Introduction to Cryptography. Springer. 2010
