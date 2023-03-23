@@ -65,7 +65,7 @@ export async function readMessages(user: string) {
 				console.log("From: " + sendername, "\n");
 				console.log("Message: " + message, "\n");
 				console.log("HMAC: " + hmac_from_db, "\n");
-				console.log((altered ? "WARNING: integrity of message (and/or HMAC/sender) could not be verified"
+				console.log((altered ? "WARNING: integrity of message (and/or HMAC/sender) could not be verified."
 					: "Integrity verified.") , "\n");
 			});
         });
