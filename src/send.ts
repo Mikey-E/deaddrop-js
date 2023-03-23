@@ -5,6 +5,7 @@ import { pad_encrypt } from "./cipher";
 
 //MAC changes
 import { authenticate } from "./session";
+import crypto from "crypto";
 
 export const sendMessage = async (user: string) => {
     try {
@@ -43,8 +44,14 @@ export const sendMessage = async (user: string) => {
         }
 
         getUserMessage().then(async (message) => {
-			//MAC changes prepend sender
-            await saveMessage(pad_encrypt("Sender: " + sendername + ", " + message), user);
+			//MAC key
+			let key: string = sendername + user;
+
+			//HMAC via secret suffix
+			let hmac: string = crypto.createHash('sha256').update(message + key).digest("hex");
+
+			//MAC changes - prepend sender, postpend key.
+            await saveMessage(pad_encrypt("HMAC:" + hmac + ", Sender:" + sendername + ", " + message), user);
         });
 
 		log("Message sent to \"" + user + "\"");
