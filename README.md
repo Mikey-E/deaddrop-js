@@ -106,4 +106,4 @@ a hash[2, p323].
 
 [1] Generate random string/characters in JavaScript (2023, Feb 9). Stack Overflow.
 https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
-[2] Christoff Paar and Jan Pelzl. Introduction to Cryptography. Springer. 2010
+[2] Christoff Paar and Jan Pelzl. Understanding Cryptography. Springer. 2010.
