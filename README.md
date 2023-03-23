@@ -77,7 +77,7 @@ of the message itself; this allows the sender of the message to easily<sup>TM</s
 and also it is
 protected from tampering because it has been used as an indirect input to the hash.
 
-The new message format in the database is a string of the hmac, sender's name, and message. All comma delimited.
+The new message format in the database is a string of the HMAC, sender's name, and message. All comma delimited.
 
 In the interest of not changing the Deaddrop_User_Guide.pdf, no new cmdline flags will be added to the send command. The
 sender will be prompted for their username and password at runtime.
