@@ -5,3 +5,18 @@ Messages read by "mike2"
 Unable to authenticate "mike2", most likely wrong password.
 Tried to read messages from "mike12345" but that user doesn't exist
 Tried to send message to "Mike1234" but that user doesn't exist
+
+
+~~~~~~~~~~~~~ New section for MAC assignment ~~~~~~~~~~~~~
+2023-03-23T03:20:19.907Z, Created user "mike1"
+2023-03-23T03:20:28.766Z, Created user "mike2"
+2023-03-23T03:21:00.796Z, Message sent to "mike2"
+2023-03-23T03:21:40.129Z, Messages read by "mike2"
+2023-03-23T03:22:44.653Z, Messages read by "mike2"
+2023-03-23T03:23:19.081Z, Messages read by "mike2"
+2023-03-23T03:24:51.181Z, Messages read by "mike2"
+2023-03-23T03:24:51.183Z, WARNING: integrity of message (and/or HMAC/sender) from mike1135st 921 to mike2 could not be verified.
+2023-03-23T03:26:31.482Z, Messages read by "mike2"
+2023-03-23T03:26:31.484Z, WARNING: integrity of message (and/or HMAC/sender) from mike1135st 921 to mike2 could not be verified.
+2023-03-23T03:26:55.485Z, Message sent to "mike1"
+2023-03-23T03:27:08.731Z, Messages read by "mike1"
